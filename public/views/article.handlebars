@@ -13,16 +13,35 @@
                 <input class="icon_telephone" type="text" placeholder="Note" note="name"
                     class="validate active"></input>
             </div>
-        </div>
-        <div class="input-field">
-            <i class="material-icons prefix">Note</i>
-            <input class="icon_telephone" type="text" placeholder="Note" note="name" class="validate active"></input>
-        </div>
 
+            <div class="input-field">
+                <i class="material-icons prefix">Note</i>
+                <input class="icon_telephone" type="text" placeholder="Note" note="name"
+                    class="validate active"></input>
+            </div>
+
+        </div>
         <div class="row">
             <div class="input-field">
                 <span><input class="btn add-note-button topnav" type="submit" value="Submit"></span>
             </div>
         </div>
     </form>
+</div>
+<div class="row">
+    <div class="col s2"></div>
+    <div class='col s8'>
+        <h5>Notes:</h5>
+        {{#if article.note}}
+        {{#each article.note}}
+        <div class="card">
+            <p id="titleNote">{{title}}</p>
+            <p>{{body}}</p>
+        </div>
+        {{/each}}
+        {{else}}
+        <p>No Note </p>
+        {{/if}}
+
+    </div>
 </div>
