@@ -34,11 +34,15 @@ app.set("view engine", "handlebars");
 
 
 // Connect to the Mongo DB
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+mongoose.connect(MONGODB_URI);
+
 mongoose.connect("mongodb://localhost/scraper", { useNewUrlParser: true });
 
 // NEW LINES
 var db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection erroe:"));
+db.on("error", console.error.bind(console, "connection error:"));
 db.on("open", function(){
   console.log("Connected to Mongoose");
 });
