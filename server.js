@@ -1,30 +1,35 @@
+var bodyParser =require("body-parser");
 var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var app = express();
+var cheerio = require("cheerio");
+var Note = require("./models/Note"); 
+var Article = require("./models/Article");
+var Save = require("./models/Save");
+var path = require("path");
+var request = require("request");
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
-var axios = require("axios");
-var cheerio = require("cheerio");
+// var axios = require("axios");
 
 // Require all models
-var db = require("./models");
+// var db = require("./models");
 
 var PORT = 3000;
 
 // Initialize Express
-var app = express();
 
 // Configure middleware
-
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.json());
 // Make public a static folder
-app.use(express.static("public"));
+app.use(express.static("./public"));
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
@@ -34,18 +39,50 @@ app.set("view engine", "handlebars");
 
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
-mongoose.connect(MONGODB_URI);
+mongoose.Promise = Promise;
+var dbConnect = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+if(process.env.MONGODB_URI) {
+mongoose.connect(process.env.MONGODB_URI)
+} else {
+  mongoose.connect(dbConnect);
+}
+mongodb://<dbuser>:<dbpassword>@ds151066.mlab.com:51066/heroku_zb5j80fw;
+// Connect mongoose to our db
+/*mongoose.connect(dbconnect, function(error) {
+  // Log any errors connecting with mongoose
+  if (error) {
+    console.log(error);
+  } else {
+    console.lo g("Mongoose is connected");
+  }
+});*/
 
 mongoose.connect("mongodb://localhost/scraper", { useNewUrlParser: true });
 
 // NEW LINES
 var db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.on("open", function(){
-  console.log("Connected to Mongoose");
+db.on("error", function(err){
+  console.log("Mongoose Error", err);
 });
+db.once("open", function(){
+  console.log("Mongoose is connected");
+});
+
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "public/views/index.html")); 
+});
+
+require("./routes/scrape.js")(app);
+require("./routes/html.js")(app);
+
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "public/views/index.html"));
+});
+
+
+// app.listen(PORT, function () {
+//   console.log("App listening on PORT " + PORT);
+// });
 
 // // END NEW LINES
 
