@@ -5,25 +5,25 @@
 
 <div class="row">
     <div class="col s2"></div>
-    <form action="/note/{{article._id}}" method="POST" class="card-panel clo s8">
-        <h5>Note on this Article></h5>
+    <form action="/note/{{article._id}}" method="POST" class="card-panel col s8">
+        <h5>Add Note on this Article></h5>
         <div class="row">
             <div class="input-field">
-                <i class="material-icons prefix">Note</i>
-                <input class="icon_telephone" type="text" placeholder="Note" note="name"
-                    class="validate active"></input>
+                <i class="material-icons prefix">perm_identity</i>
+                <input class="icon_prefix" type="text" placeholder="Name" note="name"
+                    class="validate active">
             </div>
 
             <div class="input-field">
                 <i class="material-icons prefix">Note</i>
-                <input class="icon_telephone" type="text" placeholder="Note" note="name"
-                    class="validate active"></input>
+                <input class="icon_telephone" type="text" placeholder="Note" name="note"
+                    class="validate active">
             </div>
 
         </div>
         <div class="row">
             <div class="input-field">
-                <span><input class="btn add-note-button topnav" type="submit" value="Submit"></span>
+                <center><input class="btn add-note-button topnav" type="submit" value="Submit"></center>
             </div>
         </div>
     </form>
@@ -35,12 +35,12 @@
         {{#if article.note}}
         {{#each article.note}}
         <div class="card">
-            <p id="titleNote">{{title}}</p>
+            <p id="nameNote">{{name}}</p>
             <p>{{body}}</p>
         </div>
         {{/each}}
         {{else}}
-        <p>No Note </p>
+        <p>No Note Yet. </p>
         {{/if}}
 
     </div>

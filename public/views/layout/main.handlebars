@@ -2,33 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <!-- Latest compiled and minified CSS & JS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <title>Headlines Scraper</title>
+  <meta charset="UTF-8">
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  {{!-- Materialize Icons --}}
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <title>Headlines Scraper</title>
 
 </head>
-<div class="jumbotron jumbotron-fluid">
+{{!-- <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Fluid jumbotron</h1>
     <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
   </div>
-</div>
-	<body>
-		{{> nav/navbar }}
-    <main>
-    <div class= "container"></div>
-    </main>
-    {{> footer}}
+</div> --}}
+
+<body>
+  {{> nav/navbar }}
+  <main>
+    <div class="container">
+      {{{body}}}
+    </div>
+  </main>  
+  {{> footer}}
 
 
-	</body>
-        {{!-- <script src="app.js"></script> --}}
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"><script>      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script
+</body>
+{{!-- <script src="app.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"><script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script
 
 
 </html>
