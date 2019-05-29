@@ -65,7 +65,7 @@ module.exports = function (app) {
                 "_id": req.params.id
             })
             .populate("note")
-            .exec(function (error, doc) {
+            .then(function (error, doc) {
                 if (error) {
                     console.log(error)
                 } else {
@@ -137,7 +137,7 @@ module.exports = function (app) {
             Note.find({
                 "article_id": req.params.id
             })
-            .exec(function (error, doc) {
+            .then(function (error, doc) {
                 if (error) {
                     console.log(error)
                 } else {

@@ -1,5 +1,8 @@
 .nav-wrapper {
     background-color:#01579b;
+    text-align: justify;
+    padding-top: 30px;
+    padding: 5px;
 }
 
 a#save {
