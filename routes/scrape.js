@@ -1,6 +1,8 @@
 // require the dependencies
 var cheerio = require("cheerio");
 var request = require("request");
+var axios = require("axios");
+
 // require the models
 var Note = require("../models/Note.js");
 var Article = require("../models/Article.js");
@@ -8,7 +10,7 @@ var Save = require("../models/Save");
 
 module.exports = function (app) {
     app.get("/scrape", function (req, res) {
-        request("https://www.washingtonpost.com/", function (error, response, html) {
+        axios.get("https://www.washingtonpost.com/").then(function (error, response, html) {
 
             // Load the HTML into cheerio and save it to a variable
             // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
@@ -78,7 +80,7 @@ module.exports = function (app) {
     app.get("/saved/all", function (req, res) {
         Save.find({})
             .populate("note")
-            .exec(function (error, data) {
+            .then(function (error, data) {
                 if (error) {
                     console.log(error);
                     res.json({"code" : "error"});
