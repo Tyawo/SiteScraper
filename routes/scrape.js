@@ -10,7 +10,7 @@ var Save = require("../models/Save");
 
 module.exports = function (app) {
     app.get("/scrape", function (req, res) {
-        axios.get("https://www.washingtonpost.com/").then(function (error, response, html) {
+        request("https://www.washingtonpost.com/", function (error, response, html) {
 
             // Load the HTML into cheerio and save it to a variable
             // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
